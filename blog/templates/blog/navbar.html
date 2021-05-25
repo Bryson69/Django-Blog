@@ -1,0 +1,75 @@
+{% load static %}
+<!-- Header -->
+<header id="header">
+    <h1><a href=" {% url 'blog-home' %} ">Future Allure</a></h1>
+    <nav class="links">
+        <ul>
+            <li><a href=" {% url 'blog-home' %} ">Home</a></li>
+            <li><a href="#">Lifestyle</a></li>
+            <li><a href="#">Travel</a></li>
+            <li><a href="#">Fashion</a></li>
+        </ul>
+    </nav>
+    <nav class="main">
+        <ul>
+            <li class="search">
+                <a class="fa-search" href="#search">Search</a>
+                <form id="search" method="get" action="#">
+                    <input type="text" name="query" placeholder="Search" />
+                </form>
+            </li>
+            <li class="menu">
+                <a class="fa-bars" href="#menu">Menu</a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<!-- Menu -->
+<section id="menu">
+
+    <!-- Search -->
+    <section>
+        <form class="search" method="get" action="#">
+            <input type="text" name="query" placeholder="Search" />
+        </form>
+    </section>
+
+    <!-- Links -->
+    <section>
+        <ul class="links">
+            <li>
+                <a href="#">
+                    <h3>Write a story</h3>
+                    <p>Creativity</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <h3>Stories</h3>
+                    <p>Posted Blogs</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <h3>Design Your Profile</h3>
+                    <p>Update</p>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <h3>Login</h3>
+                    <p>Access Account</p>
+                </a>
+            </li>
+        </ul>
+    </section>
+
+    <!-- Actions -->
+    <section>
+        <ul class="actions stacked">
+            <li><a href="#" class="button large fit">Log In</a></li>
+        </ul>
+    </section>
+
+</section>

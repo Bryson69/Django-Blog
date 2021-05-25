@@ -1,0 +1,66 @@
+{% load static %} {% block content %}
+<section id="sidebar">
+
+    <!-- Intro -->
+    <section id="intro">
+        <a href="#" class="logo"><img src=" {% static 'images/logo.jpg' %} " alt="" /></a>
+        <header>
+            <h2>Future Allure</h2>
+            <p>The First Blog Website by yours truly <a href="https://github.com/Bryson69" target="_blank">Bryson Mundia</a></p>
+        </header>
+    </section>
+
+    <!-- Mini Posts -->
+    <section>
+        <div class="mini-posts">
+
+            <!-- Mini Post -->
+            <article class="mini-post">
+                <header>
+                    <h3><a href="single.html">5 Post per Category</a></h3>
+                    <time class="published" datetime="2015-10-20">October 20, 2015</time>
+                    <a href="#" class="author"><img src=" {% static 'images/image_6.jpg' %} " alt="" /></a>
+                </header>
+                <a href="single.html" class="image"><img style="height: 200px; object-fit: cover;" src=" {% static 'images/image_2.jpg' %}  " alt="" /></a>
+            </article> 
+        </div>
+    </section>
+
+    <!-- Posts List -->
+    <section>
+        <ul class="posts">
+            <li>
+                <article>
+                    <header>
+                        <h3><a href="single.html">5 most liked posts</a></h3>
+                        <time class="published" datetime="2015-10-20">October 20, 2015</time>
+                    </header>
+                    <a href="single.html" class="image"><img src="images/pic08.jpg" alt="" /></a>
+                </article>
+            </li>
+        </ul>
+    </section>
+
+    <!-- About -->
+    <section class="blurb">
+        <h2>About</h2>
+        <p>Write About us.</p>
+        <ul class="actions">
+            <li><a href="#" class="button">Learn More</a></li>
+        </ul>
+    </section>
+
+    <!-- Footer -->
+    <section id="footer">
+        <ul class="icons">
+            <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
+            <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
+            <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
+            <li><a href="#" class="icon solid fa-rss"><span class="label">RSS</span></a></li>
+            <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
+        </ul>
+        <p class="copyright">&copy; Future Allure: <a href="">Bryson Mundia</a>.
+    </section>
+
+</section>
+{% endblock content %}
