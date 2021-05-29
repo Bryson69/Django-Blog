@@ -1,7 +1,7 @@
 {% extends 'blog/main.html' %} {% load static %} {% block content %}
 
 <div id="main">
-{% for post in posts %}
+    {% for post in posts %}
     <!-- Post -->
     <article class="post">
         <header>
@@ -14,7 +14,7 @@
                 <a href="#" class="author"><span class="name"> {{ post.author }} </span><img src=" {% static 'images/author.jpg' %} " alt="" /></a>
             </div>
         </header>
-        <a href="" class="image featured" style="object-fit: cover;"><img src=" {% static 'images/image_7.jpg'%} " alt="" /></a>
+        <a href="" class="image featured" style="object-fit: cover;"><img src=" {{ post.image.url }} " alt="" /></a>
         <p> {{ post.content }} </p>
         <footer>
             <ul class="actions">
@@ -27,7 +27,7 @@
             </ul>
         </footer>
     </article>
-{% endfor %}
+    {% endfor %}
     <!-- Pagination -->
     <ul class="actions pagination">
         <li><a href="" class="disabled button large previous">Previous Page</a></li>
