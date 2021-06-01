@@ -1,0 +1,51 @@
+{% extends 'users/main.html' %}
+
+{% load static %} {% block content %}
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %} 
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+          <!-- Tabs Titles -->
+          <h2 class="active fadeIn second"> Sign Up </h2>
+          <h2 class="inactive underlineHover fadeIn second"> <a href=""></a> Sign In </h2>
+      
+          <!-- Icon -->
+          <div class="social-container">
+                      <a href="#" class="social fadeIn second"><i class="fab fa-facebook-f"></i></a>
+                      <a href="#" class="social fadeIn second"><i class="fab fa-google-plus-g"></i></a>
+                      <a href="#" class="social fadeIn second"><i class="fab fa-linkedin-in"></i></a>
+           </div>
+      
+          <!-- Login Form -->
+        <form method="POST" action="">
+          {% csrf_token %}
+
+          {{form.username.label}} {{form.username}}
+
+          {{form.email.label}} {{form.email}}
+
+          {{form.password1.label}} {{form.password1}}
+
+          {{form.password2.label}} {{form.password2}}
+
+            <!-- <input type="text" name="name" placeholder="Username" class="fadeIn second regi">
+           
+            <input type="email" name="email" placeholder="Email" class="fadeIn second">
+           
+            <input type="password" name="password1" placeholder="Password" class="fadeIn second">
+           
+            <input type="password" name="password2" placeholder="Confirm Password" class="fadeIn third"> -->
+           
+            <input type="submit" value="Register" class="fadeIn fourth">
+          
+        </form>
+
+      
+          <!-- Remind Passowrd -->
+          <div id="formFooter">
+            <a class="underlineHover fadeIn second" style="font-weight: 500;" href="{% url 'login' %}">Forgot Password?</a>
+          </div>
+      
+        </div>
+      </div>
+{% endblock content %}
