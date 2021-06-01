@@ -11,8 +11,18 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
-
+import cloudinary
+import cloudinary.uploader
+import cloudinary.api
 from pathlib import Path
+
+from decouple import config
+
+from dotenv import load_dotenv
+
+load_dotenv()  # take environment variables from .env.
+
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -39,7 +49,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'cloudinary_storage',
+    'cloudinary',
     'blog.apps.BlogConfig',
+    'users.apps.UsersConfig',
+    
 ]
 
 MIDDLEWARE = [
@@ -122,7 +136,16 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/images/'
+MEDIA_URL = '/blog/'
+
+# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
+
+# CLOUDINARY_STORAGE = {
+#     'CLOUD_NAME': 'CLOUDINARY_CLOUD_NAME',
+#     'API_KEY': 'CLOUDINARY_API_KEY',
+#     'API_SECRET': 'CLOUDINARY_API_SECRET'
+# }
+
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
