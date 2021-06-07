@@ -1,51 +1,45 @@
-{% extends 'users/main.html' %}
-
-{% load static %} {% block content %}
+{% extends 'users/main.html' %} {% load static %} {% block content %}
 <!-- Specific Page CSS goes HERE  -->
-{% block stylesheets %}{% endblock stylesheets %} 
-    <div class="wrapper fadeInDown">
-        <div id="formContent">
-          <!-- Tabs Titles -->
-          <h2 class="active fadeIn second"> Sign Up </h2>
-          <h2 class="inactive underlineHover fadeIn second"> <a href=""></a> Sign In </h2>
-      
-          <!-- Icon -->
-          <div class="social-container">
-                      <a href="#" class="social fadeIn second"><i class="fab fa-facebook-f"></i></a>
-                      <a href="#" class="social fadeIn second"><i class="fab fa-google-plus-g"></i></a>
-                      <a href="#" class="social fadeIn second"><i class="fab fa-linkedin-in"></i></a>
-           </div>
-      
-          <!-- Login Form -->
+{% block stylesheets %}{% endblock stylesheets %}
+<div class="wrapper">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <a href=" {% url 'login' %} ">
+            <h2 class="active"> Sign In </h2>
+        </a>
+        <a href=" {% url 'register' %} ">
+            <h2 class="inactive underlineHover"> Sign Up </h2>
+        </a>
+
+        <!-- Icon -->
+        <div class="social-container">
+            <a href="#" class="social "><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+
+        <!-- Login Form -->
         <form method="POST" action="">
-          {% csrf_token %}
+            {% csrf_token %}
 
-          {{form.username.label}} {{form.username}}
+            <input type="text" name="username" placeholder="Username" maxlength="150" autofocus="" required="" id="id_username">
 
-          {{form.email.label}} {{form.email}}
+            <input type="email" name="email" placeholder="Email" required="" id="id_email">
 
-          {{form.password1.label}} {{form.password1}}
+            <input type="password" name="password1" placeholder="Password" autocomplete="new-password" required="" id="id_password1">
 
-          {{form.password2.label}} {{form.password2}}
+            <input type="password" name="password2" placeholder="Confirm Password" autocomplete="new-password" required="" id="id_password2">
 
-            <!-- <input type="text" name="name" placeholder="Username" class="fadeIn second regi">
-           
-            <input type="email" name="email" placeholder="Email" class="fadeIn second">
-           
-            <input type="password" name="password1" placeholder="Password" class="fadeIn second">
-           
-            <input type="password" name="password2" placeholder="Confirm Password" class="fadeIn third"> -->
-           
-            <input type="submit" value="Register" class="fadeIn fourth">
-          
+            <input type="submit" value="Register">
+
         </form>
 
-      
-          <!-- Remind Passowrd -->
-          <div id="formFooter">
-            <a class="underlineHover fadeIn second" style="font-weight: 500;" href="{% url 'login' %}">Forgot Password?</a>
-          </div>
-      
+
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            <a class="underlineHover " style="font-weight: 500;" href="{% url 'login' %}">Forgot Password?</a>
         </div>
-      </div>
+
+    </div>
+</div>
 {% endblock content %}
