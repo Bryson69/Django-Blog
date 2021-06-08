@@ -1,0 +1,44 @@
+{% extends 'users/main.html' %} {% load static %} {% block content %}
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+<div class="wrapper">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+        <a href=" {% url 'login' %} ">
+            <h2 class="active"> Sign In </h2>
+        </a>
+        <a href=" {% url 'register' %} ">
+            <h2 class="inactive underlineHover"> Sign Up </h2>
+        </a>
+
+        <!-- Icon -->
+        <div class="social-container">
+            <a href="#" class="social "><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="social"><i class="fab fa-google-plus-g"></i></a>
+            <a href="#" class="social"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+
+        <!-- Login Form -->
+        <form method="POST" action="">
+            {% csrf_token %}
+
+            <input type="text" name="username" placeholder="Username" maxlength="150" autofocus="" required="" id="id_username">
+
+            <input type="email" name="email" placeholder="Email" required="" id="id_email">
+
+            <input type="password" name="password1" placeholder="Password" autocomplete="new-password" required="" id="id_password1">
+
+            <input type="password" name="password2" placeholder="Confirm Password" autocomplete="new-password" required="" id="id_password2">
+
+            <input type="submit" value="Register">
+
+        </form>
+
+        <!-- Remind Passowrd -->
+        <div id="formFooter">
+            <a class="underlineHover " style="font-weight: 500;" href="{% url 'login' %}">Forgot Password?</a>
+        </div>
+
+    </div>
+</div>
+{% endblock content %}
