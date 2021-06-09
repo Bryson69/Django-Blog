@@ -1,0 +1,40 @@
+{% extends 'blog/main.html' %} {% load static %} {% block content %}
+<div id="main">
+    {% for post in catlist.posts %}
+    <!-- Post -->
+    <article class="post">
+        <header>
+            <div class="title">
+                <h2><a href=""> {{ post.title | truncatechars:15 }} </a></h2>
+                <p> {{ post.category }} </p>
+            </div>
+            <div class="meta">
+                <time class="published" datetime="2015-11-01"> {{ post.date_posted |date:"F d, Y" }}</time>
+                <a href="#" class="author"><span class="name"> {{ post.author }} </span><img src=" {% static 'images/author.jpg' %} " alt="" /></a>
+            </div>
+        </header>
+        <a href="" class="image featured" style="object-fit: cover;"><img src=" {{ post.image.url }} " alt="" /></a>
+        <p> {{ post.content| truncatechars:50}} </p>
+        <footer>
+            <ul class="actions">
+                <li><a href="{% url 'post' post.id %}" class="button large">Continue Reading </a></li>
+                <!-- change id attribute to slug -->
+            </ul>
+            <ul class="stats">
+                <li><a href="#">General</a></li>
+                <li><a href="#" class="icon solid fa-heart">28</a></li>
+                <li><a href="#" class="icon solid fa-comment">128</a></li>
+            </ul>
+        </footer>
+    </article>
+    {% endfor %}
+    <!-- Pagination -->
+    <ul class="actions pagination">
+        <li><a href="" class="disabled button large previous">Previous Page</a></li>
+        <li><a href="#" class="button large next">Next Page</a></li>
+    </ul>
+
+</div>
+
+
+{% endblock content %}
