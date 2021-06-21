@@ -1,0 +1,15 @@
+{% extends 'registration/main.html' %} {% load static %} {% block content %}
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+<div class="container mt-5">
+    <section class="jumbotron text-center" id="form-background">
+        <div class="container">
+            <h2> Hello {{user.username}} </h2>
+            <h2>Welcome to <strong>Future Allure</strong> </h2>
+            <h3>Your account has successfully created. Please click the link below to activate your account</h3>
+            <a href="{% url 'login'%}" class=" btn btn-success btn-lg">Activate</a>
+            </p>
+        </div>
+    </section>
+</div>
+{% endblock content %}
