@@ -6,12 +6,11 @@ from django.db.models.deletion import CASCADE
 
 from cloudinary.models import CloudinaryField
 
-from blog.models import Post
-
 # Create your models here.
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
-    bio = models.CharField(max_length=100, null=True, blank=True)
+    bio = models.TextField(max_length=100, null=True, blank=True)
+    location = models.CharField(max_length=100, null=True, blank=True)
     banner = CloudinaryField(default = 'banner_default.jpg', folder = 'blog/banners/' )
     profile_pic = CloudinaryField(default = 'default.jpg', folder = 'blog/profile_pic/' ) 
     
