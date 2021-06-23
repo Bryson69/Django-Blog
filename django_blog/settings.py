@@ -51,10 +51,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary_storage',
     'cloudinary',
+    'crispy_forms',
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
-    
 ]
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -79,6 +81,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'blog.views.category_list',
             ],
         },
     },
@@ -136,7 +139,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-MEDIA_URL = '/blog/'
+MEDIA_URL = '/media/'
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 # DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
@@ -154,3 +159,11 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+LOGIN_REDIRECT_URL = 'blog-home'
+LOGIN_URL = 'login'
+LOGOUT_URL = 'logout'
+
+# https://docs.djangoproject.com/en/3.2/topics/email/
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
