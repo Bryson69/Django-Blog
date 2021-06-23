@@ -39,6 +39,19 @@ class PostDetailView(DetailView):
     
 
 
+class PostCreateView(LoginRequiredMixin, CreateView):
+    model = Post
+    fields = ['title','location','category','content','image']
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        return reverse_lazy('blog-home')
+    
+    
+
 class CatListView(ListView):
     template_name = 'blog/category.html'
     context_object_name = 'catlist'
