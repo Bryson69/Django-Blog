@@ -10,14 +10,14 @@
             </div>
             <div class="meta">
                 <time class="published" datetime="2015-11-01"> {{ post.date_posted |date:"F d, Y" }}</time>
-                <a href="#" class="author"><span class="name"> {{ post.author }} </span><img src=" {% static 'images/author.jpg' %} " alt="" /></a>
+                <a href="#" class="author"><span class="name"> {{ post.author }} </span><img src=" {{ post.author.profile.profile_pic.url }} " alt="" /></a>
             </div>
         </header>
         <a href="" class="image featured" style="object-fit: cover;"><img src=" {{ post.image.url }} " alt="" /></a>
         <p> {{ post.content| truncatechars:50}} </p>
         <footer>
             <ul class="actions">
-                <li><a href="{% url 'post' post.id %}" class="button large">Continue Reading </a></li>
+                <li><a href="{% url 'post-detail' post.id %}" class="button large">Continue Reading </a></li>
                 <!-- change id attribute to slug -->
             </ul>
             <ul class="stats">
