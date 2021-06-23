@@ -102,3 +102,11 @@ def category_list(request):
         }
     return context
     
+
+@login_required
+def about(request):
+    return render(request, 'blog/about.html', {'title': 'About'})
+
+@login_required
+def projectOverview(request):
+    return render(request, 'blog/projectoverview.html')
