@@ -19,14 +19,12 @@
 
 <body class="is-preload">
 
-    {% include 'blog/loader.html' %}
-
-    {% include 'blog/navbar.html' %}
+    {% include 'blog/loader.html' %} {% include 'blog/navbar.html' %}
 
     <div id="wrapper">
 
         {% block content %} {% endblock content %} {% include 'blog/sidebar.html' %}
-    
+
     </div>
 
 </body>
@@ -36,4 +34,5 @@
 <script src=" {% static 'assets/js/breakpoints.min.js' %} "></script>
 <script src=" {% static 'assets/js/util.js' %} "></script>
 <script src=" {% static 'assets/js/main.js' %} "></script>
+
 </html>
