@@ -5,9 +5,9 @@
     <nav class="links">
         <ul>
             <li><a href=" {% url 'blog-home' %} ">Home</a></li>
-            <li><a href="#">Lifestyle</a></li>
-            <li><a href="#">Travel</a></li>
-            <li><a href="#">Fashion</a></li>
+            {% for category in category_list %}
+            <li><a href=" /category/{{category.name}} "> {{ category.name }} </a></li>
+            {% endfor %}
         </ul>
     </nav>
     <nav class="main">
@@ -39,9 +39,9 @@
     <section>
         <ul class="links">
             <li>
-                <a href="#">
-                    <h3>Write a story</h3>
-                    <p>Creativity</p>
+                <a href=" {% url 'post-create' %}">
+                    <h3>Write a blog</h3>
+                    <p> Create your story </p>
                 </a>
             </li>
             <li>
@@ -50,26 +50,44 @@
                     <p>Posted Blogs</p>
                 </a>
             </li>
+            {% if user.is_authenticated %}
             <li>
-                <a href="#">
+                <a href=" {% url 'accounts:profile' %} ">
                     <h3>Design Your Profile</h3>
                     <p>Update</p>
                 </a>
             </li>
             <li>
-                <a href="#">
-                    <h3>Login</h3>
-                    <p>Access Account</p>
+                
+                <a href=" {% url 'project-overview' %} ">
+                    <h3>Project Overview</h3>
+                    <p>Description about Django Blog</p>
                 </a>
             </li>
+            {% else %}
+            <li>
+                <a href=" {% url 'login' %} ">
+                    <h3>Login</h3>
+                    <p>Access your Account</p>
+                </a>
+            </li>
+            <li>
+                <a href=" {% url 'accounts:register' %} ">
+                    <h3>Register</h3>
+                    <p>Create an Account</p>
+                </a>
+            </li>
+            {% endif %}
         </ul>
     </section>
 
     <!-- Actions -->
     <section>
+        {% if user.is_authenticated %}
         <ul class="actions stacked">
-            <li><a href="#" class="button large fit">Log Out</a></li>
+            <li><a href=" {% url 'accounts:logout' %} " class="button large fit">Log Out</a></li>
         </ul>
+        {% endif %}
     </section>
 
 </section>
