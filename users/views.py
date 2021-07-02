@@ -1,4 +1,4 @@
-from django.http.response import HttpResponseForbidden
+from django.http.response import HttpResponseForbidden, HttpResponseRedirect
 from django.shortcuts import redirect, render
 
 from django.contrib.auth.forms import UserCreationForm
@@ -8,11 +8,14 @@ from django.contrib.sites.shortcuts import get_current_site
 from django.template.loader import render_to_string
 from .token import account_activation_token
 from django.conf import settings
-from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout as django_logout
 from django.contrib.auth.models import User
 from .forms import UserRegisterForm, AuthenticationForm, UserUpdateForm, ProfileUpdateForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.shortcuts import get_object_or_404
+from blog.models import Post
 
 def registerPage(request):
     if request.method == 'POST':
@@ -56,4 +59,22 @@ def updateProfile(request):
 
 @login_required
 def logout(request):
+    django_logout(request)
     return redirect('login')
+
+
+@ login_required
+def bookmark_add(request, id):
+    post = get_object_or_404(Post, id=id)
+    if post.favourites.filter(id=request.user.id).exists():
+        post.favourites.remove(request.user)
+    else:
+        post.favourites.add(request.user)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+@ login_required
+def bookmark_list(request):
+    new = Post.bookmarkmanager.filter(favourites=request.user)
+    return render(request, 'registration/bookmark.html',{'new': new})
+
