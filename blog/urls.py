@@ -11,6 +11,8 @@ urlpatterns = [
 
     path('post-form/', PostCreateView.as_view(), name='post-create'), 
 
+    path('search-post/', views.search_post, name='search_post'), 
+
     path('post/<str:pk>/update/', PostUpdateView.as_view(), name='post-update'),
 
     path('post/<str:pk>/delete/', PostDeleteView.as_view(), name='post-delete'),
@@ -19,9 +21,5 @@ urlpatterns = [
 
     # on post id -->  path('post/<slug:slug:text>'),
     path('about/', views.about, name='about-page'),
-
-    path('project-overview/', views.projectOverview, name='project-overview'),
-
-
-    # registration    
+  
 ]
