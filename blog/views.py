@@ -6,6 +6,7 @@ from django.views.generic import ListView, DetailView, CreateView, UpdateView, D
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 
 from .models import *
@@ -22,6 +23,16 @@ class PostListView(ListView):
     template_name = 'blog/home.html' #<app> / <model> <viewtype>.html
     context_object_name = 'posts' # naming the varible
     ordering = ['-date_posted']
+
+    def post(self, *args, **kwargs):
+        self.object = self.get_object()
+
+        if self.object.bookmark.filter(id=request.user.id).exists():
+            self.object.bookmark.remove(request.user)
+        else:
+            self.object.bookmark.add(request.user)
+
+        return redirect('blog-home', pk=self.object.pk)
 
 
 # def single_post(request, pk):
@@ -53,7 +64,7 @@ class PostCreateView(LoginRequiredMixin, CreateView):
 
 class PostUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Post
-    fields = ['title','location','category','content','image']
+    fields = ['title','location','category', 'tags', 'content','image']
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -102,11 +113,15 @@ def category_list(request):
         }
     return context
     
+def search_post(request):
+    if request.method == 'POST':
+        search = request.POST['search']
+        search_post = Post.objects.filter(title__contains=search)
+        return render(request, 'blog/search.html',{'search':search, 'search_post':search_post})
+    else:
+        return render(request, 'blog/search.html', {'title': 'About'})
+
 
 @login_required
 def about(request):
     return render(request, 'blog/about.html', {'title': 'About'})
-
-@login_required
-def projectOverview(request):
-    return render(request, 'blog/projectoverview.html')
