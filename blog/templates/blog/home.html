@@ -7,15 +7,15 @@
         <header>
             <div class="title">
                 <h2><a href="{% url 'post-detail' post.id %}"> {{ post.title | truncatechars:25}} </a></h2>
-                <p> {{ post.category }} </p>
+                <p><a href="#"> {{ post.tags }} </a></p>
             </div>
             <div class="meta">
                 <time class="published" datetime="2015-11-01"> {{ post.date_posted |date:"F d, Y" }}</time>
                 <a href=" {% url 'accounts:profile' %} " class="author"><span class="name"> {{ post.author }} </span><img src=" {{ post.author.profile.profile_pic.url }} " alt="" /></a>
             </div>
         </header>
-        <a href="" class="image featured" style="object-fit: cover;"><img src=" {{ post.image.url }} " alt="" /></a>
-        <p> {{ post.content| truncatechars:50}} </p>
+        <a href="{% url 'post-detail' post.id %}" class="image featured" style="object-fit: cover;"><img src=" {{ post.image.url }} " alt="" /></a>
+        <p> {{ post.content| truncatechars:150}} </p>
         <footer>
             <ul class="actions">
                 <li><a href="{% url 'post-detail' post.id %}" class="button large">Continue Reading </a></li>
@@ -23,8 +23,13 @@
             </ul>
             <ul class="stats">
                 <li><a href="#">General</a></li>
-                <li><a href="#" class="icon solid fa-heart">28</a></li>
+                <li><a href="#" class="icon solid fa-heart">887</a></li>
                 <li><a href="#" class="icon solid fa-comment">128</a></li>
+                {% if user.is_authenticated %}
+                <li><a href=" {% url 'accounts:bookmark_add' post.id %} " class="icon solid fa-bookmark"></a></li>
+                {% else %}
+                <li><a href=" {% url 'accounts:register' %} " class="icon solid fa-bookmark"></a></li>
+                {% endif %}
             </ul>
         </footer>
     </article>
