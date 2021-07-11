@@ -54,6 +54,7 @@ INSTALLED_APPS = [
     'crispy_forms',
     'blog.apps.BlogConfig',
     'users.apps.UsersConfig',
+    'mptt',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -69,6 +70,7 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'django_blog.urls'
+
 
 TEMPLATES = [
     {
@@ -142,15 +144,6 @@ STATIC_URL = '/static/'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-# DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
-
-# CLOUDINARY_STORAGE = {
-#     'CLOUD_NAME': 'CLOUDINARY_CLOUD_NAME',
-#     'API_KEY': 'CLOUDINARY_API_KEY',
-#     'API_SECRET': 'CLOUDINARY_API_SECRET'
-# }
-
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
