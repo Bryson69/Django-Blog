@@ -17,6 +17,8 @@ urlpatterns = [
     path('profile/', views.profilePage, name='profile'),
     path('update-profile/', views.updateProfile, name='update-profile'),
 
+    path('like/', views.like, name='like'),
+    
     path('bookmark/<str:id>/', views.bookmark_add, name='bookmark_add'),
     path('bookmarks/', views.bookmark_list, name='bookmark_list'),
 ]
