@@ -13,12 +13,12 @@
                 <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <fieldset class="form-group">
-                        <h2 class="border-bottom mb-4">CreateBLog Post</h2>
+                        <h2 class="border-bottom mb-4">Create Comment</h2>
                         {{ form|crispy }}
                         
                     </fieldset>
                     <div class="form-group" style="margin-top: 5px;">
-                        <button class="btn btn-outline-info" type="submit">Create/Update</button>
+                        <button class="btn btn-outline-info" type="submit">Comment</button>
                     </div>
                 </form>
             </header>
