@@ -11,7 +11,12 @@
             </div>
             <div class="meta">
                 <time class="published" datetime="2015-11-01"> {{ post.date_posted |date:"F d, Y" }}</time>
-                <a href=" {% url 'accounts:profile' %} " class="author"><span class="name"> {{ post.author }} </span><img src=" {{ post.author.profile.profile_pic.url }} " alt="" /></a>
+                <a href=" {% url 'accounts:profile' %} " class="author"><span class="name"> {{ post.author }} </span>
+                    {% if post.author.profile.profile_pic %}
+                    <img src=" {{ post.author.profile.profile_pic.url }} " alt="" /></a>
+                  {% else %}
+                    <img src="{% static 'images/person_1.jpg' %}" >
+                  {% endif %} 
             </div>
         </header>
         <a href="{% url 'post-detail' post.id %}" class="image featured" style="object-fit: cover;"><img src=" {{ post.image.url }} " alt="" /></a>
@@ -23,8 +28,13 @@
             </ul>
             <ul class="stats">
                 <li><a href="#">General</a></li>
-                <li><a href="#" class="icon solid fa-heart">887</a></li>
-                <li><a href="#" class="icon solid fa-comment">128</a></li>
+                <li><a href="#" class="icon solid fa-heart">{{post.like_count}}</a></li>
+                {% if user.is_authenticated %}
+                <li><a href=" {% url 'add_comment' post.pk %} " class="icon solid fa-comment">128</a></li>
+                {% else %}
+                <li><a href=" {% url 'accounts:register' %} " class="icon solid fa-bookmark"></a></li>
+                {% endif %}
+                
                 {% if user.is_authenticated %}
                 <li><a href=" {% url 'accounts:bookmark_add' post.id %} " class="icon solid fa-bookmark"></a></li>
                 {% else %}
