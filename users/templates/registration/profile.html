@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,7 +36,11 @@
               <div class="col-lg-3 order-lg-2">
                 <div class="card-profile-image">
                   <a href="#">
-                    <img src=" {{ user.profile.profile_pic.url }} " class="rounded-circle">
+                    {% if user.profile.profile_pic %}
+                      <img src=" {{ user.profile.profile_pic.url }} " class="rounded-circle">
+                    {% else %}
+                      <img src="{% static 'images/person_2.jpg' %}" class="rounded-circle">
+                    {% endif %}
                   </a>
                 </div>
               </div>
