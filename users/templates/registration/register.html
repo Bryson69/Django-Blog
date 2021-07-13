@@ -47,12 +47,16 @@
 
                                 {% if form.errors %}
                                 <p>Please correct the following errors:</p>
-                                {% for field in form %} {% if field.errors %}
+                                {% for field in form %}
+                                {% if field.errors %}
                                 <div class="alert alert-primary" role="alert">
                                     {{ field.label }}: {{ field.errors|striptags }}
                                 </div>
-                                {% endif %} {% endfor %} {% endif %} {{form.as_p}}
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}
 
+                           {{form.as_p}}
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="Newsletter">
                                     <label class="custom-control-label" for="Newsletter">
