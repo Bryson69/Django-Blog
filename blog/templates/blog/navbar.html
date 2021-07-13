@@ -6,7 +6,7 @@
         <ul>
             <li><a href=" {% url 'blog-home' %} ">Home</a></li>
             {% for category in category_list %}
-            <li><a href=" /category/{{category.name}} "> {{ category.name }} </a></li>
+            <li><a href="/category/{{category.name}}"> {{ category.name }} </a></li>
             {% endfor %}
         </ul>
     </nav>
@@ -14,8 +14,10 @@
         <ul>
             <li class="search">
                 <a class="fa-search" href="#search">Search</a>
-                <form id="search" method="get" action="#">
-                    <input type="text" name="query" placeholder="Search" />
+               
+                <form id="search" method="POST" action=" {% url 'search_post' %} ">
+                    {% csrf_token %}
+                    <input type="text" name="search" placeholder="Search" />
                 </form>
             </li>
             <li class="menu">
@@ -30,8 +32,9 @@
 
     <!-- Search -->
     <section>
-        <form class="search" method="get" action="#">
-            <input type="text" name="query" placeholder="Search" />
+        <form class="search" method="POST" action=" {% url 'search_post' %} ">
+            {% csrf_token %}
+            <input type="text" name="search" placeholder="Search" />
         </form>
     </section>
 
@@ -40,31 +43,31 @@
         <ul class="links">
             <li>
                 <a href=" {% url 'post-create' %}">
-                    <h3>Write a blog</h3>
-                    <p> Create your story </p>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <h3>Stories</h3>
-                    <p>Posted Blogs</p>
+                    <h3>Post a blog</h3>
+                    <p> Tell your amazing story </p>
                 </a>
             </li>
             {% if user.is_authenticated %}
+            <li>
+                <a href="{% url 'accounts:bookmark_list' %} ">
+                    <h3>Bookmarks</h3>
+                    <p>Saves Posts</p>
+                </a>
+            </li>
             <li>
                 <a href=" {% url 'accounts:profile' %} ">
                     <h3>Design Your Profile</h3>
                     <p>Update</p>
                 </a>
             </li>
+            
+            {% else %}
             <li>
-                
-                <a href=" {% url 'project-overview' %} ">
-                    <h3>Project Overview</h3>
-                    <p>Description about Django Blog</p>
+                <a href="{% url 'accounts:bookmark_list' %} ">
+                    <h3>Bookmarks</h3>
+                    <p>Saves Posts</p>
                 </a>
             </li>
-            {% else %}
             <li>
                 <a href=" {% url 'login' %} ">
                     <h3>Login</h3>
@@ -84,8 +87,8 @@
     <!-- Actions -->
     <section>
         {% if user.is_authenticated %}
-        <ul class="actions stacked">
-            <li><a href=" {% url 'accounts:logout' %} " class="button large fit">Log Out</a></li>
+        <ul class="actions stacked ">
+            <li><a href=" {% url 'logout' %} " class="button large fit ">Log Out</a></li>
         </ul>
         {% endif %}
     </section>
