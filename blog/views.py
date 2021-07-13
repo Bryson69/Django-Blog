@@ -1,5 +1,5 @@
 from django.contrib.auth import login
-from django.http.response import HttpResponse
+from django.http.response import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render, redirect
 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -7,7 +7,9 @@ from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+from django.shortcuts import get_object_or_404
 
+from .forms import CreateComment
 
 from .models import *
 # Create your views here.
@@ -35,6 +37,7 @@ class PostListView(ListView):
         return redirect('blog-home', pk=self.object.pk)
 
 
+
 # def single_post(request, pk):
 
 #     single_post = Post.objects.get(id = pk)
@@ -47,6 +50,7 @@ class PostListView(ListView):
 
 class PostDetailView(DetailView):
     model = Post
+    extra_context ={'comment': Comment.objects.all()}
     
 
 
@@ -112,7 +116,18 @@ def category_list(request):
         'category_list':category_list
         }
     return context
-    
+
+class CreateComment(LoginRequiredMixin, CreateView):
+    model = Comment
+    form_class = CreateComment
+    template_name = 'blog/add_comment.html'
+
+    def form_valid(self, form):
+        form.instance.post_id = self.kwargs['pk']
+        return super().form_valid(form)
+    success_url = reverse_lazy('blog-home')
+
+
 def search_post(request):
     if request.method == 'POST':
         search = request.POST['search']
@@ -120,6 +135,14 @@ def search_post(request):
         return render(request, 'blog/search.html',{'search':search, 'search_post':search_post})
     else:
         return render(request, 'blog/search.html', {'title': 'About'})
+
+
+
+@login_required
+def LikeView(request,pk):
+    post = get_object_or_404(Post, id = request.POST.get('post_id'))
+    post.likes.add(request.user)
+    return HttpResponseRedirect(reverse('post-detail', args=[str(pk)]))
 
 
 @login_required
