@@ -11,7 +11,7 @@
             </div>
             <div class="meta">
                 <time class="published" datetime="2015-11-01"> {{ post.date_posted |date:"F d, Y" }}</time>
-                <a href=" {% url 'accounts:profile' %} " class="author"><span class="name"> {{ post.author }} </span>
+                <a href=" {% url 'user-posts' post.author.username %} " class="author"><span class="name"> {{ post.author }} </span>
                     {% if post.author.profile.profile_pic %}
                     <img src=" {{ post.author.profile.profile_pic.url }} " alt="" /></a>
                   {% else %}
@@ -46,8 +46,17 @@
     {% endfor %}
     <!-- Pagination -->
     <ul class="actions pagination">
-        <li><a href="" class="disabled button large previous">Previous Page</a></li>
-        <li><a href="#" class="button large next">Next Page</a></li>
+        {% if is_paginated %}
+
+        {% if page_obj.has_previous %}
+        <li><a href="?page={{ page_obj.previous_page_number }}" class="button large previous">Previous Page</a></li>
+        {% endif %}
+
+        {% if page_obj.has_next %}
+        <li><a href=" ?page={{ page_obj.next_page_number }} " class="button large next">Next Page</a></li>
+        {% endif %}
+
+        {% endif %}
     </ul>
 
 </div>
