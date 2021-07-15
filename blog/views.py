@@ -1,14 +1,12 @@
 from django.contrib.auth import login
 from django.http.response import HttpResponse, HttpResponseRedirect
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.urls import reverse, reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
-from django.shortcuts import get_object_or_404
-
 from .forms import CreateComment
 
 from .models import *
@@ -25,6 +23,7 @@ class PostListView(ListView):
     template_name = 'blog/home.html' #<app> / <model> <viewtype>.html
     context_object_name = 'posts' # naming the varible
     ordering = ['-date_posted']
+    paginate_by = 8
 
     def post(self, *args, **kwargs):
         self.object = self.get_object()
@@ -38,6 +37,17 @@ class PostListView(ListView):
 
 
 
+class UserPostListView(ListView):
+    model = Post
+    template_name = 'blog/user_posts.html' #<app> / <model> <viewtype>.html
+    context_object_name = 'posts' # naming the varible
+    paginate_by = 8
+
+    def get_queryset(self):
+        user = get_object_or_404(User, username=self.kwargs.get('username'))
+        return Post.objects.filter(author=user).order_by('-date_posted')
+
+  
 # def single_post(request, pk):
 
 #     single_post = Post.objects.get(id = pk)
