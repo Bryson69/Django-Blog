@@ -31,6 +31,13 @@
         border-color: #1497ff;
         box-shadow: inset 0 0px 0px rgba(0, 0, 0, 0.075), 0 0 0px rgba(255, 0, 0, 0.6);
     }
+    label{
+        margin-right: 20px;
+    }
+
+    input{
+        margin-right: 50px;
+    }
 </style>
 <div class="container-fluid">
     <div class="row no-gutter">
@@ -56,7 +63,27 @@
                                 {% endfor %}
                                 {% endif %}
 
-                           {{form.as_p}}
+                            <label class="small font-weight-bold">{{ form.username.label }}<span class="text-muted">
+                                    (Required)</span></label>
+                            {{ form.username }}
+                            <label class="small font-weight-bold">{{ form.email.label}}<span class="text-muted">
+                                    (Required)</span></label>
+                            {{ form.email }}
+                           
+                            <label class="small font-weight-bold">{{ form.password.label}}<span class="text-muted">
+                                    (Required)</span></label>
+                            {{ form.password1}}
+
+                            <small class="form-text text-muted mb-4">
+                                At least 8 characters and 1 digit
+                            </small>
+                            {{ form.password2 }}
+                            <small class="form-text text-muted mb-4">
+                                Repeat password
+                            </small>
+
+
+
                                 <div class="custom-control custom-checkbox">
                                     <input type="checkbox" class="custom-control-input" id="Newsletter">
                                     <label class="custom-control-label" for="Newsletter">

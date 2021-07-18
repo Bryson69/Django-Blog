@@ -13,15 +13,21 @@
 
   <div class="main-content">
     <!-- Header -->
+    {% if user.profile.banner %}
     <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url( {{user.profile.banner.url}} ); background-size: cover; background-position: center top;">
+      {% else %}'
+      <div class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center" style="min-height: 600px; background-image: url( ../../../static/images/arnel-hasanovic-MNd-Rka1o0Q-unsplash.jpg ); background-size: cover; background-position: center top;"></div>
+      {% endif %}
+      
+      
       <!-- Mask -->
       <span class="mask opacity-8"></span>
       <!-- Header container -->
       <div class="container-fluid d-flex align-items-center">
         <div class="row">
           <div class="col-lg-7 col-md-10">
-            <h1 class="display-2 text-white">Hello {{ user.username }} </h1>
-            <p class="text-white mt-0 mb-5">This is your profile page. You can see the blogs posts you've creates with your work and manage your profile or saved bookmarks</p>
+            <h1 class="display-2 text-black" style="color: black;">Hello {{ user.username|title }} </h1>
+            <p class="text-black mt-0 mb-5" style="color: black;">This is your profile page. You can see the amount of blogs youve created together with the comments.</p>
           </div>
         </div>
       </div>
@@ -63,7 +69,7 @@
                       <span class="description">Photos</span>
                     </div>
                     <div>
-                      <span class="heading">89</span>
+                      <span class="heading">{{ comment.count }}</span>
                       <span class="description">Comments</span>
                     </div>
                   </div>
