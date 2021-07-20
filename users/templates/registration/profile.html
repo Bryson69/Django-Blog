@@ -41,7 +41,7 @@
                 <div class="card-profile-image">
                   <a href="#">
                     {% if user.profile.profile_pic %}
-                      <img src=" {{ user.profile.banner.url }} " class="rounded-circle">
+                      <img src=" {{ user.profile.profile_pic.url }} " class="rounded-circle">
                     {% else %}
                       <img src="{% static 'images/person_2.jpg' %}" class="rounded-circle">
                     {% endif %}
