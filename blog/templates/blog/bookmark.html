@@ -1,5 +1,6 @@
 {% extends 'blog/main.html' %} {% load static %} {% block content %}
 
+
 <div id="main">
     {% for post in new %}
     <!-- Post -->
@@ -25,7 +26,9 @@
                 <li><a href="#">General</a></li>
                 <li><a href="#" class="icon solid fa-heart">28</a></li>
                 <li><a href="#" class="icon solid fa-comment">128</a></li>
-                <li><a href=" {% url 'accounts:bookmark_add' post.id %} " class="icon solid fa-bookmark"></a></li>
+                <li>
+                    <a href=" {% url 'accounts:bookmark_add' post.id %} " class="icon solid fa-bookmark"></a>
+                </li>
             </ul>
         </footer>
     </article>

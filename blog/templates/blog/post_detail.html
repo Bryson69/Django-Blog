@@ -1,10 +1,12 @@
 {% extends 'blog/main.html' %} {% load static %} {% block content %}
 <style>
-    .like_btn, button, submit{
+    .like_btn,
+    button,
+    submit {
         border: none;
         outline: none;
-        font-size:0.9em;
-        background:none;   
+        font-size: 0.9em;
+        background: none;
     }
 </style>
 <div id="main">
@@ -13,36 +15,39 @@
     <article class="post">
         <header>
             <div class="title">
-                <h2>{{ object.title }}, {{ object.location }} </h2>
-                <p> {{ object.category }}  </p>
+                <h2>{{ object.title }}</h2>
+                <p> {{ object.location }} </p>
             </div>
             <div class="meta">
                 <time class="published" datetime="2015-11-01"> {{ object.date_posted |date:"F d, Y" }}</time>
-                <a href="#" class="author"><span class="name"> {{ object.author }} </span><img src=" {{ post.author.profile.profile_pic.url }} " alt="" /></a>
+                <a href=" {% url 'user-posts' object.author.username %} " class="author"><span class="name"> {{ object.author }} </span>
+                    {% if post.author.profile.profile_pic %}
+                    <img src=" {{ post.author.profile.profile_pic.url }} " alt="" /></a> {% else %}
+                <img src="{% static 'images/person_1.jpg' %}"> {% endif %}
             </div>
         </header>
         <a href="" class="image featured" style="object-fit: cover;"><img src=" {{ object.image.url }} " alt="" /></a>
         <p> {{ object.content }} </p>
         <footer>
             <ul class="stats">
-                <li><a href="#">General</a></li>
-
-                {% if request.user.is_authenticated %}
+                {% if object.author == user %}
+                <li><a href=" {% url 'post-update' object.id %} ">Update</a></li>
+                {% endif %} {% if request.user.is_authenticated %}
                 <button class="like_btn" id="like-button" value="{{post.id}}">
                     <li><a id="like_count" class="icon solid fa-heart">{{post.like_count}}</a></li>
-                  </button>
+                  </button> {% else %}
 
-            {% else %}
-
-            <li><a href="{% url 'accounts:register' %}" class="icon solid fa-heart">{{post.like_count}}</a></li>
-            {% endif %}
-
-            {% if user.is_authenticated %}
-            <li><a href=" {% url 'add_comment' post.pk %} " class="icon solid fa-comment">128</a></li>
-            {% else %}
-            <li><a href=" {% url 'accounts:register' %} " class="icon solid fa-bookmark"></a></li>
-            {% endif %}
-                <li><a href="#" class="icon solid fa-bookmark"></a></li>
+                <li><a href="{% url 'accounts:register' %}" class="icon solid fa-heart">{{post.like_count}}</a></li>
+                {% endif %} {% if user.is_authenticated %}
+                <li><a href=" {% url 'add_comment' post.pk %} " class="icon solid fa-comment"> {{ comment.count }} </a></li>
+                {% else %}
+                <li>
+                    <a href=" {% url 'accounts:register' %} " class="icon solid fa-bookmark"></a>
+                </li>
+                {% endif %}
+                <li>
+                    <a href="#" class="icon solid fa-bookmark"></a>
+                </li>
             </ul>
         </footer>
     </article>
@@ -52,18 +57,17 @@
     <article class="post">
         <header>
             <div class="title">
-               <h2>No Comment...</h2>
+                <h2>No Comment...</h2>
             </div>
         </header>
     </article>
 
-    {% else%}
-    {% for comment in post.comments.all %}
+    {% else%} {% for comment in post.comments.all %}
     <article class="post">
         <header>
             <div class="title">
                 <h3> {{comment.name}} </h3>
-                <p> {{ comment.body }}  </p>
+                <p> {{ comment.body }} </p>
             </div>
             <div class="meta">
                 <time class="published" datetime="2015-11-01"> {{ comment.publish |date:"F d, Y" }}</time>
@@ -71,8 +75,7 @@
             </div>
         </header>
     </article>
-    {% endfor %}
-    {% endif %}    
+    {% endfor %} {% endif %}
 </div>
 
 {% endblock content %}

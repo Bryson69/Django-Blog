@@ -2,27 +2,26 @@
 <!-- Specific Page CSS goes HERE  -->
 {% block stylesheets %}{% endblock stylesheets %}
 <style>
-    form{
+    form {
         margin-left: 25px;
     }
-</style> 
-           
-            <div id="main">
-                <article class="post">
-                    <header>
-                <form method="POST" enctype="multipart/form-data">
-                    {% csrf_token %}
-                    <fieldset class="form-group">
-                        <h2 class="border-bottom mb-4">CreateBLog Post</h2>
-                        {{ form|crispy }}
-                        
-                    </fieldset>
-                    <div class="form-group" style="margin-top: 5px;">
-                        <button class="btn btn-outline-info" type="submit">Create/Update</button>
-                    </div>
-                </form>
-            </header>
-                </article>
-            </div>
-        
+</style>
+<div id="main">
+    <article class="post">
+        <header>
+            <form method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <h2 class="border-bottom mb-4">Create or Update your BLog Post</h2>
+                    {{ form|crispy }}
+
+                </fieldset>
+                <div class="form-group" style="margin-top: 5px;">
+                    <button class="btn btn-outline-info" type="submit">Create/Update</button>
+                </div>
+            </form>
+        </header>
+    </article>
+</div>
+
 {% endblock content %}

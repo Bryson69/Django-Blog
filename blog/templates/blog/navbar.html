@@ -14,7 +14,7 @@
         <ul>
             <li class="search">
                 <a class="fa-search" href="#search">Search</a>
-               
+
                 <form id="search" method="POST" action=" {% url 'search_post' %} ">
                     {% csrf_token %}
                     <input type="text" name="search" placeholder="Search" />
@@ -60,7 +60,7 @@
                     <p>Update</p>
                 </a>
             </li>
-            
+
             {% else %}
             <li>
                 <a href="{% url 'accounts:bookmark_list' %} ">

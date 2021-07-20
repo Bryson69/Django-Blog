@@ -7,16 +7,14 @@
         <header>
             <div class="title">
                 <h2><a href="{% url 'post-detail' post.id %}"> {{ post.title | truncatechars:25}} </a></h2>
-                <p><a href="#"> {{ post.tags }} </a></p>
+                <p><a href="#">{{ post.category }}</a></p>
             </div>
             <div class="meta">
                 <time class="published" datetime="2015-11-01"> {{ post.date_posted |date:"F d, Y" }}</time>
                 <a href=" {% url 'user-posts' post.author.username %} " class="author"><span class="name"> {{ post.author }} </span>
                     {% if post.author.profile.profile_pic %}
-                    <img src=" {{ post.author.profile.profile_pic.url }} " alt="" /></a>
-                  {% else %}
-                    <img src="{% static 'images/person_1.jpg' %}" >
-                  {% endif %} 
+                    <img src=" {{ post.author.profile.profile_pic.url }} " alt="" /></a> {% else %}
+                <img src="{% static 'images/person_1.jpg' %}"> {% endif %}
             </div>
         </header>
         <a href="{% url 'post-detail' post.id %}" class="image featured" style="object-fit: cover;"><img src=" {{ post.image.url }} " alt="" /></a>
@@ -30,15 +28,19 @@
                 <li><a href="#">General</a></li>
                 <li><a href="#" class="icon solid fa-heart">{{post.like_count}}</a></li>
                 {% if user.is_authenticated %}
-                <li><a href=" {% url 'add_comment' post.pk %} " class="icon solid fa-comment">128</a></li>
+                <li><a href=" {% url 'add_comment' post.pk %} " class="icon solid fa-comment"> 44</a></li>
                 {% else %}
-                <li><a href=" {% url 'accounts:register' %} " class="icon solid fa-bookmark"></a></li>
-                {% endif %}
-                
-                {% if user.is_authenticated %}
-                <li><a href=" {% url 'accounts:bookmark_add' post.id %} " class="icon solid fa-bookmark"></a></li>
+                <li>
+                    <a href=" {% url 'accounts:register' %} " class="icon solid fa-bookmark"></a>
+                </li>
+                {% endif %} {% if user.is_authenticated %}
+                <li>
+                    <a href=" {% url 'accounts:bookmark_add' post.id %} " class="icon solid fa-bookmark"></a>
+                </li>
                 {% else %}
-                <li><a href=" {% url 'accounts:register' %} " class="icon solid fa-bookmark"></a></li>
+                <li>
+                    <a href=" {% url 'accounts:register' %} " class="icon solid fa-bookmark"></a>
+                </li>
                 {% endif %}
             </ul>
         </footer>
@@ -46,17 +48,11 @@
     {% endfor %}
     <!-- Pagination -->
     <ul class="actions pagination">
-        {% if is_paginated %}
-
-        {% if page_obj.has_previous %}
+        {% if is_paginated %} {% if page_obj.has_previous %}
         <li><a href="?page={{ page_obj.previous_page_number }}" class="button large previous">Previous Page</a></li>
-        {% endif %}
-
-        {% if page_obj.has_next %}
+        {% endif %} {% if page_obj.has_next %}
         <li><a href=" ?page={{ page_obj.next_page_number }} " class="button large next">Next Page</a></li>
-        {% endif %}
-
-        {% endif %}
+        {% endif %} {% endif %}
     </ul>
 
 </div>

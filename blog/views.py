@@ -107,6 +107,27 @@ class PostDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
         return reverse_lazy('blog-home')
     
 
+
+class ArchiveListView(ListView):
+    template_name = 'blog/archive.html'
+    context_object_name = 'archlist'
+
+    def get_queryset(self):
+        content = {
+            'arch': self.kwargs['archive'],
+            'posts': Post.objects.filter(archive__name=self.kwargs
+            ['archive'])
+        }
+        return content
+
+def archive_list(request):
+
+    archive_list = Archive.objects.exclude(name='default')
+    context = {
+        'archive_list':archive_list
+        }
+    return context
+
 class CatListView(ListView):
     template_name = 'blog/category.html'
     context_object_name = 'catlist'

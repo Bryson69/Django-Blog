@@ -6,7 +6,7 @@
         <a href="#" class="logo"><img src=" {% static 'images/logo.jpg' %} " alt="" /></a>
         <header>
             <h2>Future Allure</h2>
-            <p>The First Blog Website by yours truly <a href="https://github.com/Bryson69" target="_blank">Bryson Mundia</a></p>
+            <p>The First Blog Website by yours truly <a href="https://github.com/Bryson69" target="_blank">Bryson69</a></p>
         </header>
     </section>
 
@@ -15,38 +15,42 @@
         <div class="mini-posts">
 
             <!-- Mini Post -->
-            {% for category in category_list|slice:":4" %}
+            {% for category in category_list|slice:":5" %}
             <article class="mini-post">
                 <header>
                     <h3><a href="/category/{{category.name}}">{{ category.name }}</a></h3>
-                    <time class="published" datetime="2015-10-19">!0 may 2020</time> <!-- month/date/ year -->
-                    <a href="#" class="author"><img src="  ../../../../../static/images/person_4.jpg " alt="" /></a>
+                    <time class="published" datetime="2015-10-19">{{ category.date_posted |date:"d F, Y" }}</time>
+                    <!-- month/date/ year -->
+                    <a href="#" class="author"><img src=" ../../../../../static/images/img (28).jpg " alt="" /></a>
                 </header>
-                <a href="/category/{{category.name}}" class="image"><img src=" ../../../../../static/images/banner_default.jpg " alt="" /></a>
+                <a href="/category/{{category.name}}" class="image"><img src=" {{ category.image.url }} " style="height:200px; object-fit: cover;" alt="" /></a>
             </article>
             {% endfor %}
         </div>
     </section>
-
     <!-- Posts List -->
     <section>
         <ul class="posts">
+            {% for archive in archive_list|slice:":5" %}
             <li>
                 <article>
                     <header>
-                        <h3><a href="">Lorem ipsum fermentum ut nisl vitae</a></h3>
-                        <time class="published" datetime="2015-10-20">October 20, 2015</time>
+                        <h3><a href="/archive/{{archive.name}}">{{archive.name}}</a></h3>
+                        <time class="published" datetime="2015-10-20">{{ archive.date_posted |date:"d F, Y" }}</time>
                     </header>
-                    <a href="" class="image"><img style="height:60px; width:70px" src=" ../../../../../static/images/pic05.jpg" alt="" /></a>
+                    <a href="" class="image"><img style="height:60px; width:70px; object-fit: cover;" src=" {{ archive.image.url }} " alt="" /></a>
                 </article>
             </li>
+            {% endfor %}
         </ul>
     </section>
 
     <!-- About -->
     <section class="blurb">
-        <h2>Contact Us</h2>
-        <p>Get in touch.</p>
+        <h2>About</h2>
+        <p>A simple blog app that allows users to register and login. A user profile is created once you register to the app. Update your profile picture, banner as well as your bio. Users can like & bookmarks posts.
+            <br> Enjoy your time here.👍
+        </p>
         <ul class="actions">
             <li><a href="#" class="button">Learn More</a></li>
         </ul>
@@ -62,7 +66,7 @@
             <li><a href="#" class="icon solid fa-phone"><span class="label">Phone</span></a></li>
             <li><a href="#" class="icon solid fa-envelope"><span class="label">Email</span></a></li>
         </ul>
-        <p class="copyright">&copy; Built By: <a href="https://github.com/Bryson69">Bryson Mundia</a>. Images: <a href="http://unsplash.com">Unsplash</a>.</p>
+        <p class="copyright">&copy; Built By: <a href="https://github.com/Bryson69" target="_blank">Bryson69</a>. Images: <a href="http://unsplash.com" target="_blank">Unsplash</a>.</p>
     </section>
 
 </section>
