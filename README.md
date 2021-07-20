@@ -4,7 +4,6 @@
      <img src="https://forthebadge.com/images/badges/made-with-python.svg" >
     <br>
 </p>
-\
 <br>
 
 #### The clean, fast and right way to start a new Django `3.9` powered website.
