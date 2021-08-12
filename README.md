@@ -11,7 +11,7 @@
 
 #### The clean, fast and right way to start a new Django `3.9` powered website.
 ---
-### This is an app built using the django framework, Designed for users to post blogs/stories. It provides users with the option of creating an account and upon this a user profile will automatically be made for them, providing them with the option of updating thier profile, banner and bio. It also entails a variety of categories eg. gaming, lifestyle among others. Like, comment & search features are also available to suite the user needs.
+### This app is Designed for users to post their stories and expiriences. It provides users with the option of creating an account and upon this a user profile will automatically be made for them, providing them with the option of updating thier profile, banner and bio. It also entails a variety of categories eg. gaming, lifestyle among others. Like, comment & search features are also available to suite the user needs.
 ---
 ## Getting Started
 
