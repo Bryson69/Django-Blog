@@ -5,6 +5,11 @@
     <br>
 </p>
 <br>
+<div align="center">
+<img src="https://user-images.githubusercontent.com/62892010/129255110-b1d8f2b3-8bfe-47b7-9226-51d0fd700367.png" align="center" style="width: 100%">
+</div> 
+
+###
 
 #### The clean, fast and right way to start a new Django `3.9` powered website.
 
