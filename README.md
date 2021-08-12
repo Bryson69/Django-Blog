@@ -16,7 +16,7 @@
 ## Getting Started
 
 ```
-git clone https://github.com/Bryson69/Django-To-Do-List-App.git
+git clone https://github.com/Bryson69/Django-Blog
 ```
 
 ```bash
