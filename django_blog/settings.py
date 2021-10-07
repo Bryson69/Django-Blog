@@ -56,11 +56,6 @@ INSTALLED_APPS = [
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
-cloudinary.config( 
-  cloud_name = "dhsczkkcm", 
-  api_key = "279462951163577", 
-  api_secret = "Y8SHHPyfzJCK7Ncp1aHsG1-ea3E",
-)
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
