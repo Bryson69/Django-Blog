@@ -38,9 +38,6 @@ $ python manage.py runserver
 * Simple logging setup ready for production envs.
 
 
-# Contact
-In case You have any issues using this code please do not hesitate to get in touch with me through brysonmundia@gmail.com.
-
 
 ## Contributing
 
